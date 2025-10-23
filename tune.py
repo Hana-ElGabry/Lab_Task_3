@@ -3,6 +3,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, roc_auc_score
 import mlflow
+import os
+
+# Set MLflow tracking URI - IMPORTANT!
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
+os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv('MLFLOW_TRACKING_USERNAME')
+os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv('MLFLOW_TRACKING_PASSWORD')
 
 # Set MLflow experiment
 mlflow.set_experiment("Titanic Survival Prediction")
