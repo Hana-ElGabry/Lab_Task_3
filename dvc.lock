@@ -1,0 +1,44 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - path: data/titanic_raw.csv
+      hash: md5
+      md5: 2309cc5f04782ed9bb6016d9f4e381cf
+      size: 61194
+    - path: preprocess.py
+      hash: md5
+      md5: 50a7b54c28ad92ed151c7f7febdde37c
+      size: 985
+    outs:
+    - path: data/test.csv
+      hash: md5
+      md5: 65ae29c1b4012a896f78674de9a3af86
+      size: 6048
+    - path: data/train.csv
+      hash: md5
+      md5: 046a28a8e87f50bbcc7e7cf01bcf598e
+      size: 23699
+  train:
+    cmd: python train.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: 046a28a8e87f50bbcc7e7cf01bcf598e
+      size: 23699
+    - path: train.py
+      hash: md5
+      md5: 332ae546a04198559a2cc055127fd460
+      size: 1436
+  tune:
+    cmd: python tune.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: 046a28a8e87f50bbcc7e7cf01bcf598e
+      size: 23699
+    - path: tune.py
+      hash: md5
+      md5: 72db1ec2afddbe808e3adaf915c4021f
+      size: 2397
